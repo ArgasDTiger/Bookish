@@ -2,9 +2,8 @@
 
 namespace Core.Entities;
 
-public class Genre
+public class Genre : BaseEntity
 {
-    public ShortGuid Id { get; set; }
     public string Name { get; set; }
     public ICollection<Book> Books { get; set; } = [];
 }

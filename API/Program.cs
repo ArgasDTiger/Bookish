@@ -1,3 +1,4 @@
+using API.Extensions;
 using API.Helpers;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,8 @@ builder.Services.AddDbContext<BooksContext>(
         options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
         
     });
+
+builder.Services.AddApplicationServices();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

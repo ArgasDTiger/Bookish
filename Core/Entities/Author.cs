@@ -2,9 +2,8 @@
 
 namespace Core.Entities;
 
-public class Author
+public class Author : BaseEntity
 {
-    public ShortGuid Id { get; set; }
     public string Name { get; set; }
     public string Surname { get; set; }
     public string? PenName { get; set; }

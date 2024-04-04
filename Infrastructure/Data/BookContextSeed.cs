@@ -8,11 +8,11 @@ public class BookContextSeed
 {
     public static async Task SeedData(DbContext context)
         {
-            context.RemoveRange(context.Set<Book>());
-            context.RemoveRange(context.Set<Publisher>());
-            context.RemoveRange(context.Set<Genre>());
-            context.RemoveRange(context.Set<Author>());
-            await context.SaveChangesAsync();
+            // context.RemoveRange(context.Set<Book>());
+            // context.RemoveRange(context.Set<Publisher>());
+            // context.RemoveRange(context.Set<Genre>());
+            // context.RemoveRange(context.Set<Author>());
+            // await context.SaveChangesAsync();
             
             if (!context.Set<Book>().Any())
             {
