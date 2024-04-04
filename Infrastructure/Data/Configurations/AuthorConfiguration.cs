@@ -31,9 +31,8 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
 
         builder
             .Property(a => a.PenName)
-            .HasMaxLength(50)
-            .IsRequired();
-
+            .HasMaxLength(50);
+        
         builder
             .Property(a => a.Country)
             .HasMaxLength(90);
