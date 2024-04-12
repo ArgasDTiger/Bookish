@@ -1,11 +1,9 @@
-﻿using CSharpVitamins;
-
-namespace Core.Entities;
+﻿namespace Core.Entities;
 
 public class AuthorBook
 {
-    public ShortGuid AuthorId { get; set; }
-    public ShortGuid BookId { get; set; }
+    public int AuthorId { get; set; }
+    public int BookId { get; set; }
     public Author Author { get; set; }
     public Book Book { get; set; }
 }

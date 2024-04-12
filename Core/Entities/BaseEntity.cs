@@ -1,8 +1,6 @@
-﻿using CSharpVitamins;
-
-namespace Core.Entities;
+﻿namespace Core.Entities;
 
 public class BaseEntity
 {
-    public ShortGuid Id { get; set; }
+    public int Id { get; set; }
 }

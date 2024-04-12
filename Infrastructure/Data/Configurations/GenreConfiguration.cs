@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using CSharpVitamins;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,13 +10,6 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
     {
         builder
             .HasKey(g => g.Id);
-        
-        builder
-            .Property(g => g.Id)
-            .HasConversion(
-                v => v.ToString(),
-                v => new ShortGuid(v)
-            );
 
         builder
             .Property(g => g.Name)

@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using CSharpVitamins;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,13 +10,6 @@ public class PublisherConfiguration : IEntityTypeConfiguration<Publisher>
     {
         builder
             .HasKey(p => p.Id);
-        
-        builder
-            .Property(p => p.Id)
-            .HasConversion(
-                v => v.ToString(),
-                v => new ShortGuid(v)
-            );
         
         builder
             .Property(p => p.Name)

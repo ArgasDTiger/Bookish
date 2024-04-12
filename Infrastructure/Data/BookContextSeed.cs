@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using CSharpVitamins;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data;
@@ -19,11 +18,11 @@ public class BookContextSeed
                 // Add publishers
                 var publishers = new List<Publisher>
                 {
-                    new Publisher { Id = ShortGuid.NewGuid(), Name = "Penguin Random House", PhoneNumber = "1234567890" },
-                    new Publisher { Id = ShortGuid.NewGuid(), Name = "HarperCollins", PhoneNumber = "1987654321" },
-                    new Publisher { Id = ShortGuid.NewGuid(), Name = "Simon & Schuster", PhoneNumber = "1122334455" },
-                    new Publisher { Id = ShortGuid.NewGuid(), Name = "Macmillan Publishers", PhoneNumber = "1555666777" },
-                    new Publisher { Id = ShortGuid.NewGuid(), Name = "Hachette Livre", PhoneNumber = "1443322111" }
+                    new Publisher { Name = "Penguin Random House", PhoneNumber = "1234567890" },
+                    new Publisher { Name = "HarperCollins", PhoneNumber = "1987654321" },
+                    new Publisher { Name = "Simon & Schuster", PhoneNumber = "1122334455" },
+                    new Publisher { Name = "Macmillan Publishers", PhoneNumber = "1555666777" },
+                    new Publisher { Name = "Hachette Livre", PhoneNumber = "1443322111" }
                 };
                 await context.SaveChangesAsync();
                 context.AddRange(publishers);
@@ -32,21 +31,21 @@ public class BookContextSeed
                 // Add genres
                 var genres = new List<Genre>
                 {
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Fantasy" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Science Fiction" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Mystery" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Romance" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Thriller" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Historical Fiction" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Horror" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Adventure" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Literary Fiction" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Young Adult" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Non-fiction" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Biography" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Memoir" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Self-Help" },
-                    new Genre { Id = ShortGuid.NewGuid(), Name = "Cookbook" }
+                    new Genre { Name = "Fantasy" },
+                    new Genre { Name = "Science Fiction" },
+                    new Genre { Name = "Mystery" },
+                    new Genre { Name = "Romance" },
+                    new Genre { Name = "Thriller" },
+                    new Genre { Name = "Historical Fiction" },
+                    new Genre { Name = "Horror" },
+                    new Genre { Name = "Adventure" },
+                    new Genre { Name = "Literary Fiction" },
+                    new Genre { Name = "Young Adult" },
+                    new Genre { Name = "Non-fiction" },
+                    new Genre { Name = "Biography" },
+                    new Genre { Name = "Memoir" },
+                    new Genre { Name = "Self-Help" },
+                    new Genre { Name = "Cookbook" }
                 };
                 context.AddRange(genres);
                 await context.SaveChangesAsync();
@@ -56,7 +55,6 @@ public class BookContextSeed
                 {
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "J.K.",
                         Surname = "Rowling",
                         PenName = "Robert Galbraith",
@@ -67,7 +65,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Stephen",
                         Surname = "King",
                         ImageUrl = "Stephen_King.jpg",
@@ -77,7 +74,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Agatha",
                         Surname = "Christie",
                         PenName = "Mary Westmacott",
@@ -88,7 +84,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Jane",
                         Surname = "Austen",
                         ImageUrl = "Jane_Austen.jpg",
@@ -98,7 +93,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "George",
                         Surname = "Orwell",
                         PenName = "Eric Arthur Blair",
@@ -109,7 +103,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Tara",
                         Surname = "Westover",
                         ImageUrl = "Tara_Westover.jpg",
@@ -119,7 +112,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Delia",
                         Surname = "Owens",
                         ImageUrl = "Delia_Owens.jpg",
@@ -129,7 +121,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Alex",
                         Surname = "Michaelides",
                         ImageUrl = "Alex_Michaelides.jpg",
@@ -139,7 +130,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Ann",
                         Surname = "Patchett",
                         ImageUrl = "Ann_Patchett.jpg",
@@ -149,7 +139,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Glendy",
                         Surname = "Vanderah",
                         ImageUrl = "Glendy_Vanderah.jpg",
@@ -159,7 +148,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Margaret",
                         Surname = "Atwood",
                         ImageUrl = "Margaret_Atwood.jpg",
@@ -169,7 +157,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Heather",
                         Surname = "Morris",
                         ImageUrl = "Heather_Morris.jpg",
@@ -179,7 +166,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Jodi",
                         Surname = "Picoult",
                         ImageUrl = "Jodi_Picoult.jpg",
@@ -189,7 +175,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Lisa",
                         Surname = "Wingate",
                         ImageUrl = "Lisa_Wingate.jpg",
@@ -199,7 +184,6 @@ public class BookContextSeed
                     },
                     new Author
                     {
-                        Id = ShortGuid.NewGuid(),
                         Name = "Michelle",
                         Surname = "Obama",
                         ImageUrl = "Michelle_Obama.jpg",

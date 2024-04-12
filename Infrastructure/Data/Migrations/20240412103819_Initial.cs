@@ -15,10 +15,11 @@ namespace Infrastructure.Data.Migrations
                 name: "Authors",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
                     Surname = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    PenName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    PenName = table.Column<string>(type: "TEXT", maxLength: 50, nullable: true),
                     ImageUrl = table.Column<string>(type: "TEXT", nullable: true),
                     BirthDate = table.Column<DateOnly>(type: "TEXT", nullable: true),
                     Country = table.Column<string>(type: "TEXT", maxLength: 90, nullable: true),
@@ -33,7 +34,8 @@ namespace Infrastructure.Data.Migrations
                 name: "Genres",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
@@ -45,7 +47,8 @@ namespace Infrastructure.Data.Migrations
                 name: "Publishers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "TEXT", maxLength: 10, nullable: true)
                 },
@@ -58,6 +61,8 @@ namespace Infrastructure.Data.Migrations
                 name: "Books",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     ISBN = table.Column<string>(type: "TEXT", maxLength: 13, nullable: false),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
@@ -65,11 +70,11 @@ namespace Infrastructure.Data.Migrations
                     Pages = table.Column<int>(type: "INTEGER", nullable: true),
                     Price = table.Column<double>(type: "REAL", nullable: false),
                     PublishDate = table.Column<DateOnly>(type: "TEXT", nullable: false),
-                    PublisherId = table.Column<string>(type: "TEXT", nullable: false)
+                    PublisherId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Books", x => x.ISBN);
+                    table.PrimaryKey("PK_Books", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Books_Publishers_PublisherId",
                         column: x => x.PublisherId,
@@ -82,12 +87,12 @@ namespace Infrastructure.Data.Migrations
                 name: "AuthorBooks (Dictionary<string, object>)s",
                 columns: table => new
                 {
-                    AuthorsId = table.Column<string>(type: "TEXT", nullable: false),
-                    BooksISBN = table.Column<string>(type: "TEXT", nullable: false)
+                    AuthorsId = table.Column<int>(type: "INTEGER", nullable: false),
+                    BooksId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AuthorBooks (Dictionary<string, object>)s", x => new { x.AuthorsId, x.BooksISBN });
+                    table.PrimaryKey("PK_AuthorBooks (Dictionary<string, object>)s", x => new { x.AuthorsId, x.BooksId });
                     table.ForeignKey(
                         name: "FK_AuthorBooks (Dictionary<string, object>)s_Authors_AuthorsId",
                         column: x => x.AuthorsId,
@@ -95,10 +100,10 @@ namespace Infrastructure.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AuthorBooks (Dictionary<string, object>)s_Books_BooksISBN",
-                        column: x => x.BooksISBN,
+                        name: "FK_AuthorBooks (Dictionary<string, object>)s_Books_BooksId",
+                        column: x => x.BooksId,
                         principalTable: "Books",
-                        principalColumn: "ISBN",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -106,17 +111,17 @@ namespace Infrastructure.Data.Migrations
                 name: "BookGenre (Dictionary<string, object>)s",
                 columns: table => new
                 {
-                    BooksISBN = table.Column<string>(type: "TEXT", nullable: false),
-                    GenresId = table.Column<string>(type: "TEXT", nullable: false)
+                    BooksId = table.Column<int>(type: "INTEGER", nullable: false),
+                    GenresId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BookGenre (Dictionary<string, object>)s", x => new { x.BooksISBN, x.GenresId });
+                    table.PrimaryKey("PK_BookGenre (Dictionary<string, object>)s", x => new { x.BooksId, x.GenresId });
                     table.ForeignKey(
-                        name: "FK_BookGenre (Dictionary<string, object>)s_Books_BooksISBN",
-                        column: x => x.BooksISBN,
+                        name: "FK_BookGenre (Dictionary<string, object>)s_Books_BooksId",
+                        column: x => x.BooksId,
                         principalTable: "Books",
-                        principalColumn: "ISBN",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BookGenre (Dictionary<string, object>)s_Genres_GenresId",
@@ -127,9 +132,9 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuthorBooks (Dictionary<string, object>)s_BooksISBN",
+                name: "IX_AuthorBooks (Dictionary<string, object>)s_BooksId",
                 table: "AuthorBooks (Dictionary<string, object>)s",
-                column: "BooksISBN");
+                column: "BooksId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookGenre (Dictionary<string, object>)s_GenresId",

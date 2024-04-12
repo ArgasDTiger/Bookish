@@ -19,28 +19,28 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("AuthorBooks", b =>
                 {
-                    b.Property<string>("AuthorsId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("AuthorsId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("BooksISBN")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("BooksId")
+                        .HasColumnType("INTEGER");
 
-                    b.HasKey("AuthorsId", "BooksISBN");
+                    b.HasKey("AuthorsId", "BooksId");
 
-                    b.HasIndex("BooksISBN");
+                    b.HasIndex("BooksId");
 
                     b.ToTable("AuthorBooks (Dictionary<string, object>)s");
                 });
 
             modelBuilder.Entity("BookGenre", b =>
                 {
-                    b.Property<string>("BooksISBN")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("BooksId")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<string>("GenresId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("GenresId")
+                        .HasColumnType("INTEGER");
 
-                    b.HasKey("BooksISBN", "GenresId");
+                    b.HasKey("BooksId", "GenresId");
 
                     b.HasIndex("GenresId");
 
@@ -49,8 +49,9 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Author", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateOnly?>("BirthDate")
                         .HasColumnType("TEXT");
@@ -87,12 +88,17 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Book", b =>
                 {
-                    b.Property<string>("ISBN")
-                        .HasMaxLength(13)
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasMaxLength(13)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImageUrl")
@@ -108,15 +114,14 @@ namespace Infrastructure.Data.Migrations
                     b.Property<DateOnly>("PublishDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PublisherId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PublisherId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("ISBN");
+                    b.HasKey("Id");
 
                     b.HasIndex("PublisherId");
 
@@ -125,8 +130,9 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Genre", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -140,8 +146,9 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.Publisher", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -167,7 +174,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasOne("Core.Entities.Book", null)
                         .WithMany()
-                        .HasForeignKey("BooksISBN")
+                        .HasForeignKey("BooksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -176,7 +183,7 @@ namespace Infrastructure.Data.Migrations
                 {
                     b.HasOne("Core.Entities.Book", null)
                         .WithMany()
-                        .HasForeignKey("BooksISBN")
+                        .HasForeignKey("BooksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

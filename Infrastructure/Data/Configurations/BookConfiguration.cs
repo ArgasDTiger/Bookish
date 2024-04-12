@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using CSharpVitamins;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,16 +10,11 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
     {
 
         builder
-            .HasKey(b => b.ISBN);
+            .HasKey(b => b.Id);
 
         builder
             .Property(b => b.ISBN)
-            .IsRequired()
-            .HasMaxLength(13)
-            .HasConversion(
-                v => v.ToString(),
-                v => new ShortGuid(v)
-            );
+            .HasMaxLength(13);
             
 
         builder

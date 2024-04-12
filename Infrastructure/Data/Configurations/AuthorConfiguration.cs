@@ -1,5 +1,4 @@
 ﻿using Core.Entities;
-using CSharpVitamins;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,13 +10,6 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
     {
         builder
             .HasKey(a => a.Id);
-
-        builder
-            .Property(a => a.Id)
-            .HasConversion(
-                v => v.ToString(),
-                v => new ShortGuid(v)
-                );
 
         builder
             .Property(a => a.Name)

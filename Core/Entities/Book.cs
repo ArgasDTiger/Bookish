@@ -1,8 +1,6 @@
-﻿using CSharpVitamins;
+﻿namespace Core.Entities;
 
-namespace Core.Entities;
-
-public class Book
+public class Book : BaseEntity
 {
     public string ISBN { get; set; }
     public string Title { get; set; }
@@ -12,7 +10,7 @@ public class Book
     public decimal Price { get; set; }
     public DateOnly PublishDate { get; set; }
     public Publisher Publisher { get; set; }
-    public ShortGuid PublisherId { get; set; }
+    public int PublisherId { get; set; }
     public ICollection<Genre> Genres { get; set; } = [];
     public ICollection<Author> Authors { get; set; } = [];
 }

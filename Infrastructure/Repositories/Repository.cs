@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
-using CSharpVitamins;
+using Core.Specifications;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,17 +15,17 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
         _context = context;
     }
     
-    public async Task<List<TEntity>> GetAllAsync()
+    public async Task<List<TEntity>> GetListOfAllAsync()
     {
         return await _context.Set<TEntity>().ToListAsync();
     }
 
-    public async Task<TEntity?> GetByIdAsync(ShortGuid id)
+    public async Task<TEntity?> GetByIdAsync(int id)
     {
         return await _context.Set<TEntity>().FirstOrDefaultAsync(i => i.Id == id);
     }
 
-    public async Task<bool> DeleteAsync(ShortGuid id)
+    public async Task<bool> DeleteAsync(int id)
     {
         var item = await _context.Set<TEntity>().FirstOrDefaultAsync(i => i.Id == id);
         
@@ -53,5 +53,20 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
     {
         var saved = await _context.SaveChangesAsync();
         return saved > 0;
+    }
+
+    public async Task<TEntity?> GetEntityWithSpec(ISpecification<TEntity> spec)
+    {
+        return await ApplySpecification(spec).FirstOrDefaultAsync();
+    }
+
+    public async Task<List<TEntity?>> GetListAsync(ISpecification<TEntity> spec)
+    {
+        return await ApplySpecification(spec).ToListAsync();
+    }
+    
+    private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> spec)
+    {
+        return SpecificationEvaluator<TEntity>.GetQuery(_context.Set<TEntity>().AsQueryable(), spec);
     }
 }

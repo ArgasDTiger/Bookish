@@ -1,6 +1,4 @@
-﻿using CSharpVitamins;
-
-namespace Core.Entities;
+﻿namespace Core.Entities;
 
 public class Genre : BaseEntity
 {

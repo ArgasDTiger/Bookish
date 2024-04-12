@@ -8,6 +8,7 @@ public static class ApplicationServicesExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddScoped<IAuthorRepository, AuthorRepository>();
+        services.AddScoped<IBookRepository, BookRepository>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         
         return services;

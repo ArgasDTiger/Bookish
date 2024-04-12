@@ -15,7 +15,7 @@ public class AuthorController : BaseApiController
     [HttpGet]
     public async Task<ActionResult> GetAuthors()
     {
-        return Ok(await _authorRepository.GetAllAsync());
+        return Ok(await _authorRepository.GetListOfAllAsync());
     }
     
 }
