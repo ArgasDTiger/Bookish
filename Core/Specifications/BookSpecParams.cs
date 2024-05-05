@@ -14,8 +14,8 @@ public class BookSpecParams
     }
     
     public int? PublisherId { get; set; }
-    public ICollection<int>? AuthorId { get; set; }
-    public ICollection<int>? GenreId { get; set; }
+    public ICollection<int>? AuthorIds { get; set; }
+    public ICollection<int>? GenreIds { get; set; }
     public string? Sort { get; set; }
     private string? _search;
     public string? Search 

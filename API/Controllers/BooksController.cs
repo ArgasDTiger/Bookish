@@ -20,15 +20,19 @@ public class BooksController : BaseApiController
     }
     
     [HttpGet]
-    public async Task<ActionResult<BookToReturnDto>> GetBooks([FromQuery] BookSpecParams bookSpecParams)
+    public async Task<ActionResult<BookToReturnDto>> GetBooks([FromQuery] BookSpecParams bookParams)
     {
-        var spec = new BooksWithAuthorsAndGenresSpecification();
-        
+        var spec = new BooksWithAuthorsAndGenresSpecification(bookParams);
+
+        var countSpec = new BookWithFiltersForCountSpecification(bookParams);
+
+        var totalItems = await _bookRepository.CountAsync(countSpec);
+
         var books = await _bookRepository.GetListAsync(spec);
         
         var data = _mapper
-            .Map<List<Book>, List<BookToReturnDto>>(books);
-        return Ok(data);
+            .Map<IReadOnlyList<Book>, IReadOnlyList<BookToReturnDto>>(books);
+        return Ok(new Pagination<BookToReturnDto>(bookParams.PageIndex, bookParams.PageSize, totalItems, data));
     }
     
     [HttpGet("{id}")]

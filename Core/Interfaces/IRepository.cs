@@ -13,4 +13,5 @@ public interface IRepository<TEntity> where TEntity : BaseEntity
     Task<bool> SaveAsync();
     Task<TEntity?> GetEntityWithSpec(ISpecification<TEntity> spec);
     Task<List<TEntity?>> GetListAsync(ISpecification<TEntity> spec);
+    Task<int> CountAsync(ISpecification<TEntity> spec);
 }

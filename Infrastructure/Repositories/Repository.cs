@@ -64,9 +64,17 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
     {
         return await ApplySpecification(spec).ToListAsync();
     }
+
+    public async Task<int> CountAsync(ISpecification<TEntity> spec)
+    {
+        Console.WriteLine(ApplySpecification(spec));
+        return await ApplySpecification(spec).CountAsync();
+    }
     
     private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> spec)
     {
-        return SpecificationEvaluator<TEntity>.GetQuery(_context.Set<TEntity>().AsQueryable(), spec);
+        var query = SpecificationEvaluator<TEntity>.GetQuery(_context.Set<TEntity>().AsQueryable(), spec);
+        return query;
     }
+
 }
