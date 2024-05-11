@@ -1,18 +1,22 @@
-<div class="carousel-container">
+<div #carouselContainer class="carousel-container">
   <div class="carousel-inner">
-    <div class="track" id="homepage-book-list">
+    <div #track class="track">
+      <app-carousel-item
+        (cardWidthEmitter)="onWidthChange($event)"
+        *ngFor="let book of books"
+        [book]="book"></app-carousel-item>
     </div>
   </div>
   <div class="nav">
-    <button class="prev">
-                    <span class="material-symbols-outlined">
-                        keyboard_arrow_left
-                    </span>
+    <button #prevBtn class="prev" (click)="prevBtnClick()">
+      <span class="material-symbols-outlined arrow-left">
+          keyboard_arrow_left
+      </span>
     </button>
-    <button class="next">
-                    <span class="material-symbols-outlined">
-                        keyboard_arrow_right
-                    </span>
+    <button #nextBtn class="next" (click)="nextBtnClick()">
+      <span class="material-symbols-outlined arrow-right">
+          keyboard_arrow_right
+      </span>
     </button>
   </div>
 </div>
