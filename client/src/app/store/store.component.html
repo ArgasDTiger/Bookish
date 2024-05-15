@@ -1,1 +1,31 @@
-<p>store works!</p>
+<main class="container">
+  <h1 class="text-primary-emphasis h1">Store</h1>
+  <hr>
+
+  <div class="row">
+    <div
+      class="d-flex align-items-center mb-1 col-2 me-4 ms-4 position-relative"
+      ngbDropdown
+      #dropdown="ngbDropdown"
+      [autoClose]="false">
+      <h4 class="store-h4 custom-toggle" ngbDropdownToggle>Genres</h4>
+      <button
+        class="btn btn-link d-inline-block ps-2 custom-toggle"
+        type="button"
+        ngbDropdownToggle>
+        <i class="bi" [ngClass]="dropdown.isOpen() ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+      </button>
+
+      <ul class="ul-dropdown mt-2" ngbDropdownMenu>
+        <li
+          *ngFor="let genre of genres"
+          class="dropdown-item"
+          (click)="selectGenre(genre.name)"
+          [class.active]="selectedGenres.includes(genre.name)">
+          {{ genre.name }}
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</main>

@@ -1,16 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
   <div class="container-fluid">
-    <a
-      class="navbar-brand ms-3"
-      routerLink="/"
-    >
+    <a class="navbar-brand ms-3" routerLink="/">
       <img src="assets/images/logo.png" alt="Bookish" style="max-height: 50px;">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarColor01">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse">
+    <div [ngbCollapse]="isCollapsed" id="navbarColor01" class="collapse navbar-collapse">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a
@@ -31,7 +28,7 @@
       </ul>
       <div class="nav-icons">
         <button class="nav-icon">
-          <a href="basket.html">
+          <a>
             <i class="bi bi-cart4"></i>
           </a>
 

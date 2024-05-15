@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Specifications.Params;
 
 namespace Core.Specifications;
 
@@ -15,7 +16,7 @@ public class BooksWithAuthorsAndGenresSpecification : BaseSpecification<Book>
     
     public BooksWithAuthorsAndGenresSpecification(BookSpecParams bookParams)
         : base(x =>
-            (string.IsNullOrEmpty(bookParams.Search) || x.Title.ToLower().Contains(bookParams.Search)) &&
+            (string.IsNullOrEmpty(bookParams.Search) || x.Title.Contains(bookParams.Search, StringComparison.CurrentCultureIgnoreCase)) &&
             (!bookParams.PublisherId.HasValue || x.PublisherId == bookParams.PublisherId) &&
             (bookParams.AuthorIds == null || !bookParams.AuthorIds.Any() || bookParams.AuthorIds.Any(id => x.Authors.Select(a => a.Id).Contains(id))) &&
             (bookParams.GenreIds == null || !bookParams.GenreIds.Any() || bookParams.GenreIds.Any(id => x.Genres.Select(g => g.Id).Contains(id)))
