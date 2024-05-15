@@ -16,6 +16,4 @@ public class GenresWithSortSpecification : BaseSpecification<Genre>
             AddOrderBy(x => x.Name);
         }
     }
-
-    
 }

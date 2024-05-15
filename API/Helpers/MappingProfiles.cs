@@ -16,5 +16,6 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.Books, opt => opt.MapFrom(src => src.Books.Select(b => b.Title).ToList()));
         CreateMap<Author, AuthorFullNameDto>()
             .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.Name} {src.Surname}".Trim()));
+        CreateMap<Genre, GenreDto>();
     }
 }

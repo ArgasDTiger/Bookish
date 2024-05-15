@@ -3,7 +3,7 @@
 public abstract class PageParams
 {
     private const int MaxPageSize = 50;
-    public int PageIndex = 1;
+    public int PageIndex { get; set; } = 1;
 
     private int _pageSize = 5;
 
