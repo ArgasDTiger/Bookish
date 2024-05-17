@@ -1,6 +1,7 @@
 using API.Extensions;
 using API.Helpers;
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,10 +17,21 @@ builder.Services.AddDbContext<BooksContext>(
     {
         options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
         options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-        
+
     });
 
+builder.Services.AddDbContext<AppIdentityDbContext>(
+    options =>
+    {
+        options.UseSqlite(builder.Configuration.GetConnectionString("IdentityConnection"));
+        options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+    });
+
+
 builder.Services.AddApplicationServices();
+
+builder.Services.AddIdentityServices(builder.Configuration);
+
 
 builder.Services.AddCors(opt =>
 {
@@ -45,6 +57,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseStaticFiles();
 
