@@ -2,13 +2,14 @@
 using Core.Entities.Identity;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 
 namespace API.Extensions;
 
 public static class IdentityServiceExtensions
 {
-    public static IServiceCollection AddIdentityServices(this IServiceCollection services,
+    public static void AddIdentityServices(this IServiceCollection services,
         IConfiguration config)
     {
         var builder = services.AddIdentityCore<AppUser>(options =>
@@ -21,6 +22,8 @@ public static class IdentityServiceExtensions
         });
 
         builder.AddEntityFrameworkStores<AppIdentityDbContext>();
+        builder.AddSignInManager<SignInManager<AppUser>>();
+
 
         services.AddAuthentication(options =>
         {
@@ -44,7 +47,5 @@ public static class IdentityServiceExtensions
                 )
             };
         });
-        
-        return services;
     }
 }

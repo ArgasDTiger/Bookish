@@ -1,17 +1,18 @@
 ﻿using Core.Interfaces;
 using Infrastructure.Repositories;
+using Infrastructure.Services;
 
 namespace API.Extensions;
 
 public static class ApplicationServicesExtensions
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    public static void AddApplicationServices(this IServiceCollection services)
     {
         services.AddScoped<IAuthorRepository, AuthorRepository>();
         services.AddScoped<IBookRepository, BookRepository>();
         services.AddScoped<IGenreRepository, GenreRepository>();
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        
-        return services;
+
+        services.AddScoped<ITokenService, TokenService>();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Identity;
 using Infrastructure.Identity.Config;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,5 +19,20 @@ public class AppIdentityDbContext : IdentityDbContext<AppUser>
 
         builder.ApplyConfiguration(new AppUserConfiguration());
         builder.ApplyConfiguration(new AddressConfiguration());
+
+        List<IdentityRole> roles = new List<IdentityRole>
+        {
+            new()
+            {
+                Name = "Admin",
+                NormalizedName = "ADMIN"
+            },
+            new()
+            {
+                Name = "User",
+                NormalizedName = "USER"
+            }
+        };
+        builder.Entity<IdentityRole>().HasData(roles);
     }
 }

@@ -13,9 +13,8 @@ public class AppIdentityDbContextSeed
             {
                 new()
                 {
-                    DisplayName = "DDDDysik",
+                    UserName = "DDDDysik",
                     Email = "vlad@gmail.com",
-                    UserName = "vlad@gmail.com",
                     Address = new Address
                     {
                         FirstName = "Vladyslav",
@@ -27,9 +26,8 @@ public class AppIdentityDbContextSeed
                 },
                 new()
                 {
-                    DisplayName = "Loopa",
+                    UserName = "Loopa",
                     Email = "stas@gmail.com",
-                    UserName = "stas@gmail.com",
                     Address = new Address
                     {
                         FirstName = "Stanyslav",

@@ -8,9 +8,5 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
 {
     public void Configure(EntityTypeBuilder<AppUser> builder)
     {
-        builder
-            .Property(a => a.DisplayName)
-            .IsRequired();
-        
     }
 }
