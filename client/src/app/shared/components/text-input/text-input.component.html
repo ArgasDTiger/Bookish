@@ -1,0 +1,42 @@
+<label class="sr-only ms-1 me-auto">{{ label }}</label>
+<input
+  *ngIf="type !== 'password'"
+  [ngClass]="(controlDir && controlDir.control && controlDir.control.touched) ? (!controlDir.control.valid) ? 'is-invalid' : 'is-valid' : null"
+  [type]="type"
+  (blur)="onInputBlur()"
+  (input)="onInputChange($event)"
+  class="form-control mb-2 wide-input"
+  placeholder="{{ label }}"
+>
+
+<div *ngIf="type === 'password'" class="input-group mb-2 wide-input">
+  <input
+    type="{{ currentType }}"
+    class="form-control password-input"
+    placeholder="{{ label }}"
+    (blur)="onInputBlur()"
+    (input)="onInputChange($event)"
+    [ngClass]="(controlDir && controlDir.control && controlDir.control.touched)
+    ? (!controlDir.control.valid)
+    ? 'is-invalid' : 'is-valid' : null"
+  >
+  <div class="input-group-append password-eye">
+    <span class="input-group-text" (click)="togglePassword()">
+      <i class="bi" [ngClass]="currentType === 'password' ? 'bi-eye-fill' : 'bi-eye-slash-fill'"></i>
+    </span>
+  </div>
+</div>
+
+<div
+  class="text-danger"
+  *ngIf="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.touched && controlDir.control.dirty)">
+<!--  <span *ngIf="controlDir.control.errors?.['required']">{{ label }} is required</span>-->
+  <span *ngIf="(controlDir.control.errors?.['pattern'] || controlDir) && label.toLowerCase() !== 'confirm password'">Invalid {{ label | lowercase }}</span>
+  <span *ngIf="label.toLowerCase() === 'confirm password'">Passwords don't match</span>
+</div>
+
+<div
+  class="invalid-feedback text-danger d-block"
+  *ngIf="(controlDir && controlDir.control && !controlDir.control.valid && controlDir.control.dirty)">
+  <span *ngIf="controlDir.control.errors?.['emailExists']">Email address is in use</span>
+</div>

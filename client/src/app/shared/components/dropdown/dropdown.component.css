@@ -18,6 +18,7 @@
 }
 
 .dropdown-menu {
+  user-select: none;
   padding: 0;
 }
 

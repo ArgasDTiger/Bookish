@@ -41,3 +41,25 @@
 .dropdown-item a {
   color: var(--bs-dropdown-link-color);
 }
+
+.nav-icon::after {
+  display: none;
+}
+
+.dropdown-menu {
+  cursor: pointer;
+  user-select: none;
+}
+
+.dropdown-menu {
+  left: -4em;
+}
+
+.dropdown-toggle:focus {
+  outline: none !important;
+}
+
+/* doesn't work for some reason*/
+.dropdown-menu .dropdown-item:hover {
+  background-color: #222222 !important;
+}

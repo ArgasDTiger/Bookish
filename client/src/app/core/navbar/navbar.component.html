@@ -3,11 +3,11 @@
     <a class="navbar-brand ms-3" routerLink="/">
       <img src="assets/images/logo.png" alt="Bookish" style="max-height: 50px;">
     </a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarColor01">
+    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div [ngbCollapse]="isCollapsed" id="navbarColor01" class="collapse navbar-collapse">
+    <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a
@@ -34,14 +34,22 @@
           </a>
 
         </button>
-        <p id="basketItemsCount">0</p>
-        <div class="d-inline-flex dropdown me-3" id="profileDropdown" >
-          <button class="nav-icon" type="button" id="profileDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+        <p #basketItemsCount>0</p>
+        <div
+          ngbDropdown
+          class="d-inline-flex dropdown me-3"
+          #drop="ngbDropdown"
+          (mouseover)="drop.open()"
+          (mouseout)="drop.close()">
+          <button class="nav-icon" type="button" ngbDropdownToggle>
             <i class="bi bi-person-circle"></i>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="profileDropdownBtn">
+          <ul class="dropdown-menu" ngbDropdownMenu>
+            <li class="dropdown-item" (click)="openLoginModal()">Login</li>
+            <li class="dropdown-item" (click)="openRegisterModal()">Register</li>
           </ul>
         </div>
+
       </div>
 
     </div>
