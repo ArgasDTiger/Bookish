@@ -9,8 +9,10 @@ export class ModalService {
   constructor(private modalService: NgbModal) {}
 
   open(component: any, data?: any): NgbModalRef {
-    this.modalRef = this.modalService.open(component);
-    if (data) {
+    this.modalRef = this.modalService.open(component, {
+      backdrop: 'static',
+      keyboard: false
+    });    if (data) {
       Object.keys(data).forEach(key => {
         this.modalRef!.componentInstance[key] = data[key];
       });

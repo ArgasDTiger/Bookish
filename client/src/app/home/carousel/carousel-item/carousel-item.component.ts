@@ -16,7 +16,6 @@ export class CarouselItemComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     const cardWidth = this.cardContainer.nativeElement.offsetWidth;
-    console.log(`WIDTH IS ${cardWidth}`)
     this.cardWidthEmitter.next(cardWidth);
   }
 }

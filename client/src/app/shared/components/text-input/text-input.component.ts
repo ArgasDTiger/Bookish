@@ -31,14 +31,14 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     this.currentType = this.type;
-
     const control = this.controlDir.control;
-    const validators = control?.validator ? [control.validator] : [];
-    const asyncValidators = control?.asyncValidator ? [control.asyncValidator] : [];
-
-    control?.setValidators(validators);
-    control?.setAsyncValidators(asyncValidators);
-    control?.updateValueAndValidity();
+    if (control) {
+      const validators = control.validator ? [control.validator] : [];
+      const asyncValidators = control.asyncValidator ? [control.asyncValidator] : [];
+      control.setValidators(validators);
+      control.setAsyncValidators(asyncValidators);
+      control.updateValueAndValidity({ emitEvent: false });
+    }
   }
 
   writeValue(obj: any): void {
@@ -56,16 +56,19 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   }
 
   onInputChange(event: any) {
-    // @ts-ignore
-    if (this.controlDir.control.touched) {
+    if (this.controlDir.control) {
       this.onChange(event.target.value);
     }
   }
 
   onInputBlur() {
+    if (this.controlDir.control) {
+      this.controlDir.control.markAsTouched();
+      this.controlDir.control.markAsDirty();
+    }
     this.onTouched();
   }
 
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange: any = () => {};
+  onTouched: any = () => {};
 }

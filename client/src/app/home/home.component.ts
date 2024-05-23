@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
     this.homeService.getBooks()
       .subscribe(response => {
         this.books = response!.data;
-        console.log(response!.data)
       });
   }
 

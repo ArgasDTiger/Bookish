@@ -1,6 +1,10 @@
 <app-modal [modalName]="'Sign Up'">
-  <form [formGroup]="registerForm" class="d-flex justify-content-center align-items-center flex-column">
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+    class="d-flex justify-content-center align-items-center flex-column">
     <h1 class="h3 font-weight-normal">Please enter your data</h1>
+    <h2 *ngIf="registerForm!.errors?.['apiError']" class="h5 text-danger">Weird things happened, try again</h2>
     <app-text-input
       [type]="'email'"
       [label]="'Email'"
