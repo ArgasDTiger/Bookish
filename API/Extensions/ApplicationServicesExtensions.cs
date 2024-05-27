@@ -14,5 +14,6 @@ public static class ApplicationServicesExtensions
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IBasketRepository, BasketRepository>();
     }
 }
