@@ -28,7 +28,7 @@ builder.Services.AddDbContext<AppIdentityDbContext>(
         options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
     });
 
-builder.Services.AddSingleton<ConnectionMultiplexer>(c =>
+builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
 {
     var configuration = ConfigurationOptions.Parse(builder.Configuration
             .GetConnectionString("Redis")!, true);

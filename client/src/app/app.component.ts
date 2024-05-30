@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import {NavbarComponent} from "./core/navbar/navbar.component";
 import {FooterComponent} from "./core/footer/footer.component";
 import {AccountService} from "./account/account.service";
+import {BasketService} from "./basket/basket.service";
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,13 @@ import {AccountService} from "./account/account.service";
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,
+              private basketService: BasketService) {
   }
 
   ngOnInit(): void {
     this.loadCurrentUser();
+    this.loadBasket();
   }
 
   loadCurrentUser() {
@@ -26,5 +29,16 @@ export class AppComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  loadBasket() {
+    const basketId = localStorage.getItem('basket_id');
+    if (basketId) {
+      this.basketService.getBasket(basketId)
+        .subscribe(() => {
+        }, error => {
+          console.log(error);
+        });
+    }
   }
 }

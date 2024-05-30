@@ -28,13 +28,15 @@
         </li>
       </ul>
       <div class="nav-icons">
-        <button class="nav-icon">
+        <button
+          routerLink="/basket"
+          class="nav-icon">
           <a>
             <i class="bi bi-cart4"></i>
           </a>
 
         </button>
-        <p #basketItemsCount>0</p>
+        <p *ngIf="(basket$ | async) as basket"> {{ basket.items.length }} </p>
         <div
           ngbDropdown
           class="d-inline-flex dropdown me-3"

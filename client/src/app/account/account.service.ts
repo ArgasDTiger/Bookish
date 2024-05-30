@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, map} from "rxjs";
+import {BehaviorSubject, map, ReplaySubject} from "rxjs";
 import {IUser} from "../shared/models/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
@@ -31,6 +31,7 @@ export class AccountService {
             this.currentUserSource.next(user);
           }
         })
+
       );
   }
 

@@ -3,7 +3,7 @@ import {IGenre} from "./genre";
 
 export interface IBook {
   id: number;
-  ISBN: string;
+  isbn: string;
   title: string;
   description: string;
   imageUrl: string;

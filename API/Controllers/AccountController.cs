@@ -1,7 +1,9 @@
 ﻿using API.Dtos;
 using API.Errors;
+using API.Extensions;
 using Core.Entities.Identity;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -76,6 +78,20 @@ public class AccountController : BaseApiController
                 { Errors = errors });
         }
 
+        return new UserDto
+        {
+            Email = user.Email,
+            Token = _tokenService.CreateToken(user),
+            Username = user.UserName
+        };
+    }
+
+    [Authorize]
+    [HttpGet]
+    public async Task<ActionResult<UserDto>> GetCurrentUser()
+    {
+        var user = await _userManager.FindByEmailFromClaimsPrinciple(HttpContext.User);
+        
         return new UserDto
         {
             Email = user.Email,
