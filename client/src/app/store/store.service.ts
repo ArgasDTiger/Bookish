@@ -6,16 +6,17 @@ import {map} from "rxjs";
 import {IAuthorFullName} from "../shared/models/authorFullName";
 import {StoreParams} from "../shared/models/storeParams";
 import {IPagination} from "../shared/models/pagination";
+import {IBook} from "../shared/models/book";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
-
+  baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
   getGenres() {
-    return this.http.get<IGenre[]>(environment.apiUrl + 'genres',
+    return this.http.get<IGenre[]>(this.baseUrl + 'genres',
       { observe: 'response' })
       .pipe(
         map(response => {
@@ -25,7 +26,7 @@ export class StoreService {
   }
 
   getAuthors() {
-    return this.http.get<IAuthorFullName[]>(environment.apiUrl + 'authors/fullnames',
+    return this.http.get<IAuthorFullName[]>(this.baseUrl + 'authors/fullnames',
       { observe: 'response' })
       .pipe(
         map(response => {
@@ -67,6 +68,10 @@ export class StoreService {
           return response.body;
         })
       );
+  }
+
+  getBook(id: number) {
+    return this.http.get<IBook>(this.baseUrl + 'books/' + id);
   }
 
 }

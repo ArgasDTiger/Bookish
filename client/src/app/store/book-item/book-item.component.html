@@ -9,7 +9,7 @@
       <p class="card-price">${{ book.price | number:'1.2-2' }}</p>
     </div>
     <div class="btn-group w-100">
-      <button class="btn btn-outline-primary">
+      <button class="btn btn-outline-primary" routerLink="/store/{{ book.id }}">
         <i class="bi bi-info-lg"></i>
       </button>
       <button class="btn btn-outline-primary" (click)="addBookToBasket(book)">

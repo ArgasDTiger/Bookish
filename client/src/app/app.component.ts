@@ -4,11 +4,12 @@ import {NavbarComponent} from "./core/navbar/navbar.component";
 import {FooterComponent} from "./core/footer/footer.component";
 import {AccountService} from "./account/account.service";
 import {BasketService} from "./basket/basket.service";
+import {NgxSpinnerComponent} from "ngx-spinner";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, NgxSpinnerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
