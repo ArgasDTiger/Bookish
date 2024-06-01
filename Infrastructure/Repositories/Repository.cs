@@ -67,7 +67,6 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
 
     public async Task<int> CountAsync(ISpecification<TEntity> spec)
     {
-        Console.WriteLine(ApplySpecification(spec));
         return await ApplySpecification(spec).CountAsync();
     }
     
