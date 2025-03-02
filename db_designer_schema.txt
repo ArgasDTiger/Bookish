@@ -1,0 +1,44 @@
+
+Books {
+	Isbn string pk unique
+	Title string
+	Description text
+	Pages integer
+	Price decimal
+	PublishDate datetime
+	PublisherId integer null > Publishers.id
+}
+
+Authors {
+	id integer pk increments unique
+	Name string
+	Surname string
+	PenName integer null
+	DateOfBirth datetime
+	Country integer null
+	City integer null
+}
+
+AuthorBooks {
+	id integer pk increments unique
+	AuthorId integer > Authors.id
+	BookIsbn integer > Books.Isbn
+}
+
+Genres {
+	id integer pk increments unique
+	Name string unique
+}
+
+Publishers {
+	id integer pk increments unique
+	Name string
+	PhoneNumber string
+}
+
+BookGenre {
+	id integer pk increments unique
+	BookId integer > Books.Isbn
+	GenreId integer > Genres.id
+}
+
