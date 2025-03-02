@@ -17,17 +17,16 @@ import {NgIf} from "@angular/common";
 import {ModalService} from "../../../shared/modal/modal.service";
 
 @Component({
-  selector: 'app-register-modal',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ModalComponent,
-    ReactiveFormsModule,
-    TextInputComponent,
-    NgIf,
-  ],
-  templateUrl: './register-modal.component.html',
-  styleUrls: ['./register-modal.component.css'],
+    selector: 'app-register-modal',
+    imports: [
+        FormsModule,
+        ModalComponent,
+        ReactiveFormsModule,
+        TextInputComponent,
+        NgIf,
+    ],
+    templateUrl: './register-modal.component.html',
+    styleUrls: ['./register-modal.component.css']
 })
 export class RegisterModalComponent implements OnInit {
   registerForm!: FormGroup;

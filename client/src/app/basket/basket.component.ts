@@ -5,16 +5,15 @@ import {Basket, IBasket, IBasketItem} from "../shared/models/basket";
 import {AsyncPipe, CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-basket',
-  standalone: true,
-  imports: [
-    NgForOf,
-    AsyncPipe,
-    NgIf,
-    CurrencyPipe
-  ],
-  templateUrl: './basket.component.html',
-  styleUrl: './basket.component.css'
+    selector: 'app-basket',
+    imports: [
+        NgForOf,
+        AsyncPipe,
+        NgIf,
+        CurrencyPipe
+    ],
+    templateUrl: './basket.component.html',
+    styleUrl: './basket.component.css'
 })
 export class BasketComponent implements OnInit {
   basket$!: Observable<IBasket>;

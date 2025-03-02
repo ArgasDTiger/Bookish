@@ -8,17 +8,16 @@ import {Router} from "@angular/router";
 import {ModalService} from "../../../shared/modal/modal.service";
 
 @Component({
-  selector: 'app-login-modal',
-  standalone: true,
-  imports: [
-    ModalComponent,
-    TextInputComponent,
-    ReactiveFormsModule,
-    NgClass,
-    NgIf
-  ],
-  templateUrl: './login-modal.component.html',
-  styleUrl: './login-modal.component.css'
+    selector: 'app-login-modal',
+    imports: [
+        ModalComponent,
+        TextInputComponent,
+        ReactiveFormsModule,
+        NgClass,
+        NgIf
+    ],
+    templateUrl: './login-modal.component.html',
+    styleUrl: './login-modal.component.css'
 })
 export class LoginModalComponent implements OnInit {
   loginForm!: FormGroup;

@@ -5,14 +5,13 @@ import {NgForOf} from "@angular/common";
 import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
-  selector: 'app-carousel',
-  standalone: true,
-  imports: [
-    CarouselItemComponent,
-    NgForOf
-  ],
-  templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.css'
+    selector: 'app-carousel',
+    imports: [
+        CarouselItemComponent,
+        NgForOf
+    ],
+    templateUrl: './carousel.component.html',
+    styleUrl: './carousel.component.css'
 })
 export class CarouselComponent implements AfterViewInit {
   @Input("books") books!: IBook[];

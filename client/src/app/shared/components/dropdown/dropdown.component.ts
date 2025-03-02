@@ -3,17 +3,16 @@ import {NgbDropdown, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-
 import {NgClass, NgForOf} from "@angular/common";
 
 @Component({
-  selector: 'app-dropdown',
-  standalone: true,
-  imports: [
-    NgbDropdownToggle,
-    NgClass,
-    NgForOf,
-    NgbDropdownMenu,
-    NgbDropdown
-  ],
-  templateUrl: './dropdown.component.html',
-  styleUrl: './dropdown.component.css'
+    selector: 'app-dropdown',
+    imports: [
+        NgbDropdownToggle,
+        NgClass,
+        NgForOf,
+        NgbDropdownMenu,
+        NgbDropdown
+    ],
+    templateUrl: './dropdown.component.html',
+    styleUrl: './dropdown.component.css'
 })
 export class DropdownComponent {
   @Input() title!: string;
